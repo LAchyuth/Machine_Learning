@@ -1,0 +1,150 @@
+Employee Attrition Data
+
+
+This dataset appears to be about employee characteristics and attrition. The goal might be to predict Attrition (Yes/No) based on other features. Here's how you can approach statistical tests, feature engineering, and feature selection for this data.
+
+1. Statistical Tests
+a. Determine Relationships Between Features and Attrition
+Since Attrition is categorical, we can use:
+
+Chi-Square Test: For categorical features like BusinessTravel, Department, and EducationField.
+T-tests or ANOVA: For continuous features like DailyRate, DistanceFromHome, etc.
+Example Code for Statistical Tests:
+
+import pandas as pd
+import scipy.stats as stats
+
+# Load dataset
+df = pd.read_csv('your_dataset.csv')
+
+# Separate categorical and continuous features
+categorical_features = ['BusinessTravel', 'Department', 'EducationField']
+continuous_features = ['DailyRate', 'DistanceFromHome', 'Age', 'TotalWorkingYears']
+
+# Chi-Square Test for Categorical Variables
+for feature in categorical_features:
+    contingency_table = pd.crosstab(df[feature], df['Attrition'])
+    chi2, p, _, _ = stats.chi2_contingency(contingency_table)
+    print(f"Chi-Square Test for {feature} and Attrition: p-value = {p:.4f}")
+
+# T-tests or ANOVA for Continuous Variables
+for feature in continuous_features:
+    attrition_yes = df[df['Attrition'] == 'Yes'][feature]
+    attrition_no = df[df['Attrition'] == 'No'][feature]
+    t_stat, p = stats.ttest_ind(attrition_yes, attrition_no)
+    print(f"T-Test for {feature} and Attrition: p-value = {p:.4f}")
+
+2. Feature Engineering
+a. Encoding Categorical Features
+Categorical features need to be encoded for machine learning models:
+
+Label Encoding: For ordinal features (e.g., Education).
+One-Hot Encoding: For nominal features (e.g., BusinessTravel, Department).
+
+# One-Hot Encoding
+df = pd.get_dummies(df, columns=['BusinessTravel', 'Department', 'EducationField'], drop_first=True)
+
+# Label Encoding
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df['Attrition'] = le.fit_transform(df['Attrition'])  # Yes = 1, No = 0
+
+b. Feature Creation
+Interaction Features: Combine features like YearsAtCompany and YearsSinceLastPromotion.
+Binning: Bin continuous variables like Age into age groups.
+Ratios: Calculate ratios, such as DistanceFromHome/YearsAtCompany.
+
+# Example: Creating new features
+df['YearsSinceLastPromotionRatio'] = df['YearsSinceLastPromotion'] / (df['YearsAtCompany'] + 1)
+df['AgeGroup'] = pd.cut(df['Age'], bins=[20, 30, 40, 50, 60], labels=['20s', '30s', '40s', '50s'])
+
+3. Feature Selection
+a. Correlation Analysis
+Use Pearson correlation for continuous features and Attrition.
+
+python
+Copy code
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Correlation heatmap
+correlation_matrix = df.corr()
+plt.figure(figsize=(12, 8))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.title('Feature Correlation Matrix')
+plt.show()
+
+b. Univariate Feature Selection
+Use SelectKBest with Chi-Square or Mutual Information for feature selection.
+
+python
+Copy code
+from sklearn.feature_selection import SelectKBest, chi2, mutual_info_classif
+
+X = df.drop('Attrition', axis=1)
+y = df['Attrition']
+
+# Chi-Square Test
+chi2_selector = SelectKBest(chi2, k=10)
+X_chi2 = chi2_selector.fit_transform(X, y)
+
+# Mutual Information
+mi_selector = SelectKBest(mutual_info_classif, k=10)
+X_mi = mi_selector.fit_transform(X, y)
+
+selected_features_chi2 = X.columns[chi2_selector.get_support()]
+selected_features_mi = X.columns[mi_selector.get_support()]
+
+print("Selected Features (Chi-Square):", selected_features_chi2)
+print("Selected Features (Mutual Info):", selected_features_mi)
+
+c. Model-Based Feature Importance
+Train a Random Forest model and use its feature_importances_ attribute.
+
+python
+Copy code
+from sklearn.ensemble import RandomForestClassifier
+
+model = RandomForestClassifier(random_state=42)
+model.fit(X, y)
+
+# Feature Importance
+importances = model.feature_importances_
+sorted_indices = importances.argsort()[::-1]
+
+Featues	Feature_importance
+26	StockOptionLevel	0.071434
+17	MonthlyIncome	0.059003
+15	JobSatisfaction	0.053522
+12	JobInvolvement	0.050318
+2	DailyRate	0.043371
+9	EnvironmentSatisfaction	0.042149
+8	EmployeeNumber	0.041866
+18	MonthlyRate	0.040245
+24	RelationshipSatisfaction	0.040020
+4	DistanceFromHome	0.039617
+33	YearsWithCurrManager	0.038403
+31	YearsInCurrentRole	0.038327
+11	HourlyRate	0.036830
+0	Age	0.036427
+13	JobLevel	0.034318
+30	YearsAtCompany	0.033372
+27	TotalWorkingYears	0.032736
+28	TrainingTimesLastYear	0.032527
+1	BusinessTravel	0.028644
+29	WorkLifeBalance	0.027320
+5	Education	0.024162
+32	YearsSinceLastPromotion	0.023946
+22	PercentSalaryHike	0.021409
+19	NumCompaniesWorked	0.019651
+6	EducationField	0.019113
+14	JobRole	0.018880
+16	MaritalStatus	0.018251
+21	OverTime	0.009947
+10	Gender	0.008675
+3	Department	0.007911
+23	PerformanceRating	0.007607
+7	EmployeeCount	0.000000
+25	StandardHours	0.000000
+20	Over18	0.000000
+

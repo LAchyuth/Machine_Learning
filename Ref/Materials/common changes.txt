@@ -1,0 +1,125 @@
+
+-convert linkedin word into hyperlink and remove the link from it 
+-make sure each bullet point in your resume is of 1 line only
+-make sure everything is in proper size and same format like Senior consultant word 
+-make education,skills in bullet points
+- add project section 
+Sample format- 
+XYZ Company/ABC Project 
+•Description 1
+•Description 2
+•Description 3
+-write certificates like this- 
+Python-Learnbay-2023
+
+
+-remove words like mobile,email, only words, values of them should be there 
+-write linkedin,email,mobile number in one single line horizontal below name
+-Change Headings to this- Experience
+-write certificates like this- 
+Python-Learnbay-2023
+-In exp and project section remove all sub heading like- description,roles,etc...
+Sample format- 
+XYZ Company/ABC Project 
+•Description 1
+•Description 2
+•Description 3
+-make education bullet points
+-3-4 bullet point in each exp and project not more than that 
+-make sure each bullet point in your resume is of 1 line only
+
+-remove words like mobile,email, only words, values of them should be there 
+-write linkedin,email,mobile number in one single line horizontal below name 
+-convert linkedin word into hyperlink and remove the link from it 
+-restructure the skills- make these sub sections- 
+data science, programming lang, data visualisation,tools, data base
+don't write ml libraries name in skills, write them in projects
+Sample- 
+•Programming Languages-Python, SQL
+•Data Science-Statistical Analysis, Machine Learning
+•Data Visualization-Power BI, Tableau, Excel
+•Databases-SQL, MongoDB
+•Tools-PyCharm, Jupyter Notebook
+
+-In exp and project section remove all sub heading like- description,roles,etc...
+Sample format- 
+XYZ Company/ABC Project 
+•Description 1
+•Description 2
+•Description 3
+
+-Change Headings to this- Experience
+-write certificates like this- 
+Python-Learnbay-2023
+(remove detail from them) 
+
+
+
+
+
+
+
+
+-remove words like mobile,email, only words, values of them should be there 
+-write linkedin,email,mobile number in one single line below name 
+-make education in bullet points is
+-remove stats and ML sub heading in skills section, instead add this-> Data Science- Stats,ML
+-Make heading as Skills not skills summary
+-make heading as experience 
+- add some numbers in exp section, like handled guests,improved sales, etc
+-remove bullet points from each project title and write below details of each project in bullet points (3-4 in number)
+-each project should have description (your last project does not have)
+-reduce certificates number to 5
+
+
+
+
+
+remove summary section completely 
+remove words like mobile,email,location, only words, values of them should be there 
+convert LinkedIn word into hyperlink and then remove linkedin profile link 
+convert all bullet bullets as black solid 
+mention education as latest above 
+restructure the skills- make these sub sections- 
+data science, programming lang, data visualisation,tools, data base
+don't write ml libraries name in skills, write them in projects
+Sample- 
+•Programming Languages-Python, SQL
+•Data Science-Statistical Analysis, Machine Learning
+•Data Visualization-Power BI, Tableau, Excel
+•Databases-SQL, MongoDB
+•Tools-PyCharm, Jupyter Notebook
+
+In exp and project section remove all sub heading like- Company,Duration,etc...
+Sample format- 
+XYZ Company/ABC Project 
+•Description 1
+•Description 2
+•Description 3
+
+Change Headings to this- Experience, Projects 
+Add certificate section in the end 
+
+
+1) In header-remove links of linkedin and GitHub profile and just hyperlink both the words only
+2) remove summary 
+3) Make all details in one single horizontal line 
+4) Add some numbers in exp section like- improved accuracy by 5%, used dataset of 10,000 data points with 5 features. 
+5) Make 1 bullet of 1 line each 
+6) Make the heading as Experience 
+8) make project section, In project- make 1 line bullet points,just write 3-4 bullet points only
+9) Add some numbers in project section as well 
+10) Add bullet points in education section on college name only, don't detail 
+
+
+any education, just write clg,degree,grade,year
+12) add certifications as last section 
+13)  restructure the skills- make these sub sections- 
+data science, programming lang, data visualisation,tools, data base
+don't write ml libraries name in skills, write them in projects
+Sample- 
+•Programming Languages-Python, SQL
+•Data Science-Statistical Analysis, Machine Learning
+•Data Visualization-Power BI, Tableau, Excel
+•Databases-SQL, MongoDB
+•Tools-PyCharm, Jupyter Notebook
